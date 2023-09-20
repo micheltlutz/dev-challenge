@@ -1,8 +1,7 @@
 from passlib.context import CryptContext
-from sqlalchemy import Column, Integer, String, Date
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
+from app.database.db import Base
 
-Base = declarative_base()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
@@ -11,8 +10,8 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     username = Column(String, unique=True, index=True)
-    birthday = Column(Date, index=True, nullable=True)
-    nickname = Column(String, index=True, nullable=True)
+    email = Column(String, nullable=True)
+    nickname = Column(String, nullable=True)
     hashed_password = Column(String)
 
     def verify_password(self, password):

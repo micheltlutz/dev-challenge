@@ -5,7 +5,7 @@ from jose import JWTError, jwt
 
 from ..database.db import SessionLocal
 from ..models.user import User
-from ..schemas.user import UserCreate
+from ..schemas.user import UserLogin
 from ..schemas.jwt import Token, TokenData
 
 SECRET_KEY = "@devChallenge2023!"
@@ -13,6 +13,15 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 router = APIRouter()
+
+
+# Dependency
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 def create_access_token(data: dict):
@@ -23,8 +32,8 @@ def create_access_token(data: dict):
     return encoded_jwt
 
 
-@router.post("/token", response_model=Token)
-def login_for_access_token(form_data: UserCreate, db: Session = Depends(SessionLocal)):
+@router.post("/auth/", response_model=Token)
+def login_for_access_token(form_data: UserLogin, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.username == form_data.username).first()
     if not user or not user.verify_password(form_data.password):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect username or password")

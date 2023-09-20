@@ -1,25 +1,29 @@
-from pydantic import BaseModel
-from datetime import date
+from pydantic import BaseModel, EmailStr
 
 
 class UserCreate(BaseModel):
     username: str
     password: str
-    birthday: date = None
-    nickname: str = None
+    email: EmailStr
+    nickname: str
+
+    class Config:
+        from_attributes = True
 
 
 class UserEdit(BaseModel):
     password: str = None
-    birthday: date = None
+    email: EmailStr = None
     nickname: str = None
 
 
 class User(BaseModel):
     id: int
     username: str
-    birthday: date
+    email: EmailStr
     nickname: str
 
-    class Config:
-        orm_mode = True
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
