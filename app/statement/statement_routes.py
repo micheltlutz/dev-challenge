@@ -24,7 +24,7 @@ def get_db():
         db.close()
 
 
-# Create a new user
+# Create a new statement
 @router.post("/statement/", status_code=201)
 def create_statement(statement: StatementCreate, db: Session = Depends(get_db)):
     # Criar o registro de statement
