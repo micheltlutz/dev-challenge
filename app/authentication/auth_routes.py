@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from datetime import timedelta, datetime
-from jose import JWTError, jwt
+from jose import jwt
 
-from ..database.db import SessionLocal
-from ..models.user import User
-from ..schemas.user import UserLogin
-from ..schemas.jwt import Token, TokenData
+from app.database.db import SessionLocal
+from app.user.user_model import User
+from app.user.user_schema import UserLogin
+from app.authentication.jwt_schema import Token
 
 SECRET_KEY = "@devChallenge2023!"
 ALGORITHM = "HS256"
