@@ -24,7 +24,7 @@ def get_db():
 
 def create_access_token(data: dict):
     to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(minutes=config("token_expires"))
+    expire = datetime.utcnow() + timedelta(minutes=int(config("token_expires")))
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, config("secret"), algorithm=config("algorithm"))
     return encoded_jwt
@@ -32,11 +32,11 @@ def create_access_token(data: dict):
 
 @router.post("/auth/", response_model=Token)
 def login_for_access_token(form_data: UserLogin, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.username == form_data.username).first()
+    user = db.query(User).filter(User.userid == form_data.userid).first()
     if not user or not user.verify_password(form_data.password):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect username or password")
 
-    access_token = create_access_token(data={"sub": user.username})
+    access_token = create_access_token(data={"sub": user.userid})
     return {"access_token": access_token, "token_type": "bearer"}
 
 

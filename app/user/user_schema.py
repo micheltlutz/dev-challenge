@@ -1,11 +1,11 @@
 from pydantic import BaseModel, EmailStr
-
+from datetime import date
 
 class UserCreate(BaseModel):
-    username: str
+    userid: EmailStr
     password: str
-    email: EmailStr
-    nickname: str
+    fullname: str
+    birthdate: date
 
     class Config:
         from_attributes = True
@@ -13,17 +13,17 @@ class UserCreate(BaseModel):
 
 class UserEdit(BaseModel):
     password: str = None
-    email: EmailStr = None
-    nickname: str = None
+    fullname: str = None
+    birthdate: date = None
 
 
 class User(BaseModel):
     id: int
-    username: str
-    email: EmailStr
-    nickname: str
+    userid: EmailStr
+    fullname: str
+    birthdate: date
 
 
 class UserLogin(BaseModel):
-    username: str
+    userid: str
     password: str
