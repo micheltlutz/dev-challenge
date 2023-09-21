@@ -89,3 +89,10 @@ def generate_random_statements(registers_to_generate: int = 1, db: Session = Dep
         db.refresh(stmt)
 
     return {"message": f"{registers_to_generate} random statements generated and added.", "statements": statements}
+
+
+@router.get("/statements/")
+def list_statements(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    # Query the database
+    statements = db.query(Statement).offset(skip).limit(limit).all()
+    return statements
