@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from app.database.db import SessionLocal
 from app.statement.statement_model import Statement
 from app.statement.statement_schema import StatementCreate
+from app.dependencies.current_user import get_current_user
 
 from faker import Faker
 import random
@@ -26,7 +27,7 @@ def get_db():
 
 # Create a new statement
 @router.post("/statement/", status_code=201)
-def create_statement(statement: StatementCreate, db: Session = Depends(get_db)):
+def create_statement(statement: StatementCreate, db: Session = Depends(get_db), _: str = Depends(get_current_user)):
     # Criar o registro de statement
     db_statement = Statement(
         description=statement.description,
@@ -51,7 +52,7 @@ def create_statement(statement: StatementCreate, db: Session = Depends(get_db)):
 
 
 @router.get("/generate-random-statement/{registers_to_generate}")
-def generate_random_statements(registers_to_generate: int = 1, db: Session = Depends(get_db)):
+def generate_random_statements(registers_to_generate: int = 1, db: Session = Depends(get_db), _: str = Depends(get_current_user)):
     if registers_to_generate < 1 | registers_to_generate > 100:
         raise HTTPException(status_code=400, detail="Count must be greater than 0 an minor 100.")
 
@@ -92,7 +93,7 @@ def generate_random_statements(registers_to_generate: int = 1, db: Session = Dep
 
 
 @router.get("/statements/")
-def list_statements(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def list_statements(skip: int = 0, limit: int = 10, db: Session = Depends(get_db), _: str = Depends(get_current_user)):
     # Query the database
     statements = db.query(Statement).offset(skip).limit(limit).all()
     return statements

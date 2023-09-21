@@ -8,3 +8,5 @@ pydantic[email]
 bcrypt
 python-multipart
 Faker
+jwt
+PyJWT
