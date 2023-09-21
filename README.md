@@ -1,52 +1,10 @@
-# dev-challenge
+# Development challenge
 
-## For development mode
 
-**macOS / Linux**
+This **README** is currently divided into two parts:
 
-`source env/bin/activate` 
+In Instructions for challenged you will find instructions to carry out the challenge by creating an interface, whether web or mobile, for the routes existing in the project documentation.
+- [Instructions for challenged](./challenged.md)
 
-**Windows**
-
-`env \Scripts\activate.bat`
-
-### Desactivate environment
-
-In root project folder run command `deactivate` in terminal
-
-## Create Image
-
-```bash
-docker build -t "dev-challenge" .
-```
-
-### Check if image was created
-
-```bash
-docker images
-```
-## Run container
-
-```bash
-docker run -d -p 8000:8000 dev-challenge:latest
-```
-
-Development challenge
-
-## If you want to run the project in a container
-
-```bash
-docker-compose up -d --build
-```
-
-## Install
-
-```bash
-pip install -r requirements.txt
-```
-
-## Run server
-
-```bash
-uvicorn app.main:app --reload
-```
+In Instructions for contributors you will find instructions to contribute to the project, whether to correct bugs or add new features.
+- [Instructions for contributors](./contributors.md)
