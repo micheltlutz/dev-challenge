@@ -7,3 +7,4 @@ pydantic
 pydantic[email]
 bcrypt
 python-multipart
+Faker
