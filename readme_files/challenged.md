@@ -10,12 +10,16 @@ Follow the instructions below to carry out the procedure.
 - Terminal
 
 **For Linux**
-- Docker
+- [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
 
-**For macOS or Windows**
-- Rancher Desktop or Docker Desktop 
+**For macOS**
+- [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation#macos)
 
-> **Attention:** If you are using Windows, you need to run the terminal as administrator.
+**Windows**
+- [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)
+- [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation#windows)
+
+> **Attention!:** If you are using Windows, you need to run the terminal as administrator.
 >
 > Prefer Rancher Desktop, it is free, more complete and has more features
 
