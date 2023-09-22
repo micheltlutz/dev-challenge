@@ -70,8 +70,8 @@ Routes with authentication have a padlock icon
 
 ### Front-End
 
-- [Challange 1. Contact Form](readme_files/challange_frontend1.md)
+- [Challange 1. Contact Form](challange_frontend1.md)
  
 ### Back-End
 
-- [Challange 1. Contact Form](readme_files/challange_backend1.md)
+- [Challange 1. Contact Form](challange_backend1.md)
