@@ -53,3 +53,16 @@ When you need to stop the container, run the code below in your terminal
 ```bash
 docker stop dev-challenge-demo
 ```
+
+## Api Documentation information
+
+The project documentation uses swagger, where you will find the routes, parameters and schematics of each of the routes created for your challenge, in addition to being able to execute the routes directly in the documentation.
+
+- [http://localhost:8000/docs](http://localhost:8000/docs)
+
+Routes with authentication have a padlock icon
+
+![Routes with authentication](readme_images/swagger_example_auth.png "Routes with authentication have a padlock icon")
+
+![Schema Example](readme_images/schema_example_contact.png "Simple example of a schema")
+
