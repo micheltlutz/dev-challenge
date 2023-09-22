@@ -41,6 +41,6 @@ Implement a graphical user interface that allows users to submit contact informa
 
 - We value creativity, so feel free to design an intuitive and appealing interface.
 - Your code implementation should be clean, well-organized, and adhere to best development practices.
-- Upon completing the challenge, share the source code with us, preferably in a Git repository, along with setup and execution instructions.
+- Be sure to write a good README guiding how to run your project, dependencies and what you think is necessary to install and run the project.
 
 We wish you the best with the challenge! We're looking forward to seeing your solution!

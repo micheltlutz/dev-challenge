@@ -21,7 +21,10 @@ Your task is to design and implement a route named create_contact in your prefer
     "interest": "Interest indicated by the user"
 }
 ```
-
+userid: email
+    password: str
+    fullname: str
+    birthdate: date
 ### 3. Output:
 
 - After successfully processing the input data, the endpoint should return a status code of `200 OK`.
@@ -42,5 +45,6 @@ Your task is to design and implement a route named create_contact in your prefer
 
 - Ensure your solution adheres to best practices in terms of code structure, error handling, and security.
 - Thoroughly test the route to guarantee its reliability under different scenarios.
+- Be sure to write a good README guiding how to run your project, dependencies and what you think is necessary to install and run the project.
 
 We wish you the best with this challenge and eagerly await your solution!

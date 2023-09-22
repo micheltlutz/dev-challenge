@@ -71,6 +71,7 @@ Routes with authentication have a padlock icon
 ### Front-End
 
 - [Challange 1. Contact Form](challange_frontend1.md)
+- [Challange 2. Create User Form](challange_frontend2.md)
  
 ### Back-End
 
