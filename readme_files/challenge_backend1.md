@@ -21,10 +21,7 @@ Your task is to design and implement a route named create_contact in your prefer
     "interest": "Interest indicated by the user"
 }
 ```
-userid: email
-    password: str
-    fullname: str
-    birthdate: date
+
 ### 3. Output:
 
 - After successfully processing the input data, the endpoint should return a status code of `200 OK`.
@@ -38,7 +35,7 @@ userid: email
 
 ### Additional Points (Bonus):
 
-- As a distinguishing feature, integrate a Swagger documentation for the create_contact route, outlining its expected input, output, and behavior. This would not only demonstrate your proficiency with modern API documentation standards but would also offer a clear interface for front-end developers and other consumers of your API.
+- As a distinguishing feature, integrate a Swagger documentation for the `create_contact` route, outlining its expected input, output, and behavior. This would not only demonstrate your proficiency with modern API documentation standards but would also offer a clear interface for front-end developers and other consumers of your API.
 
 
 ## Final Considerations:
