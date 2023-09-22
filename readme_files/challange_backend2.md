@@ -1,14 +1,17 @@
 # Back-end Developer Technical Challenge 2
 
 ## Objective:
+
 Your primary mission is to design and implement a backend route named create_user for user registration. This route will handle the reception and processing of user data sent via a POST request. The solution should be crafted using your preferred back-end language/framework.
 
 ## Specifications:
 
 ### 1. Endpoint:
+
 - Develop an endpoint named /create_user.
 
 ### 2. Input:
+
 - The route should expect a POST request with a JSON body formatted as:
 
 ```json
