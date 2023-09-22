@@ -62,7 +62,16 @@ The project documentation uses swagger, where you will find the routes, paramete
 
 Routes with authentication have a padlock icon
 
-![Routes with authentication](readme_images/swagger_example_auth.png "Routes with authentication have a padlock icon")
+![Routes with authentication](images/swagger_example_auth.png "Routes with authentication have a padlock icon")
 
-![Schema Example](readme_images/schema_example_contact.png "Simple example of a schema")
+![Schema Example](images/schema_example_contact.png "Simple example of a schema")
 
+## Challanges
+
+### Front-End
+
+- [Challange 1. Contact Form](readme_files/challange_frontend1.md)
+ 
+### Back-End
+
+- [Challange 1. Contact Form](readme_files/challange_backend1.md)
