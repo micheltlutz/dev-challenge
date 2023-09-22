@@ -1,6 +1,7 @@
 import logging
 from fastapi import FastAPI
 from app.database.db import engine, Base
+from fastapi.middleware.cors import CORSMiddleware
 
 # Importing routes
 from app.authentication import auth_routes
@@ -9,8 +10,16 @@ from app.statement import statement_routes
 from app.balance import balance_routes
 from app.contact import contact_routes
 
-
 app = FastAPI()
+
+# CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite qualquer origem. Não faça isso em produção!
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos os métodos. Você pode ajustar isso dependendo das suas necessidades
+    allow_headers=["*"],
+)
 
 
 def init_db():
