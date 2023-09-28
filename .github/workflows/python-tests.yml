@@ -30,7 +30,7 @@ jobs:
 
     - name: Run tests with coverage
       run: |
-        pytest --cov=your_module_or_package_name --cov-report=xml --cov-report=term
+        pytest --cov=app --cov-report=xml --cov-report=term
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
