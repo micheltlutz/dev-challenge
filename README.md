@@ -1,3 +1,8 @@
+![main](https://github.com/micheltlutz/dev-challenge/actions/workflows/python-tests.yml/badge.svg?branch=main)
+[![codecov](https://codecov.io/gh/micheltlutz/dev-challenge/graph/badge.svg?token=UvaQd65VVD)](https://codecov.io/gh/micheltlutz/dev-challenge)
+
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+
 # Development challenge
 
 This project was designed to strengthen the studies of professionals working in web, mobile, and back-end development, offering a range of practical challenges.
