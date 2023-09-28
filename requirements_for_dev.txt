@@ -1,3 +1,16 @@
+fastapi[all]~=0.103.2
+uvicorn
+passlib~=1.7.4
+python-jose
+sqlalchemy~=2.0.21
+pydantic~=2.4.2
+pydantic[email]
+bcrypt
+python-multipart
+Faker~=19.6.2
+PyJWT~=2.8.0
+python-decouple
+
 pytest
 pytest-cov
 httpx
