@@ -1,10 +1,8 @@
-from typing import Optional
-
+import jwt
+from decouple import config
 from fastapi import HTTPException, Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-import jwt
 from jwt import PyJWTError
-from decouple import config
 
 security = HTTPBearer()
 
@@ -18,8 +16,9 @@ credentials_exception = HTTPException(
 def get_current_user(authorization: HTTPAuthorizationCredentials = Security(security)):
     token = authorization.credentials
     try:
-        payload = jwt.decode(token, config("secret"), algorithms=[config("algorithm")])
+        payload = jwt.decode(token, config("SECRET"), algorithms=[config("algorithm")])
         user_id = payload.get("sub")
+
         if user_id is None:
             raise credentials_exception
         return user_id

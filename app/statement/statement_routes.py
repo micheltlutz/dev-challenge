@@ -1,20 +1,19 @@
+import random
+from datetime import datetime
+
+from faker import Faker
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
 from app.database.db import SessionLocal
+from app.dependencies.current_user import get_current_user
 from app.statement.statement_model import Statement
 from app.statement.statement_schema import StatementCreate
-from app.dependencies.current_user import get_current_user
-
-from faker import Faker
-import random
-
-from datetime import datetime
-
 
 router = APIRouter()
 fake = Faker()
+
 
 # Dependency
 def get_db():

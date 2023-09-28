@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 
 from app.balance.balance_schema import Balance
 from app.database.db import SessionLocal
-from app.statement.statement_model import Statement
 from app.dependencies.current_user import get_current_user
+from app.statement.statement_model import Statement
 
 router = APIRouter()
 
@@ -15,6 +15,7 @@ def get_db():
         yield db
     finally:
         db.close()
+
 
 @router.get("/balance/", response_model=Balance, description="""
     Esta rota retorna o saldo calculado de todas as transações de um usuário.

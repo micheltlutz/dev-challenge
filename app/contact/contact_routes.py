@@ -1,6 +1,7 @@
 from fastapi import APIRouter, status
-from app.contact.contact_schema import Contact
 from fastapi.responses import JSONResponse
+
+from app.contact.contact_schema import Contact
 
 router = APIRouter()
 

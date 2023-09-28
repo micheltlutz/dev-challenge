@@ -10,11 +10,13 @@ Python 3.11+
 
 **macOS / Linux**
 
-`source env/bin/activate` 
+`source venv/bin/activate` 
 
 **Windows**
 
-`env \Scripts\activate.bat`
+- `.\venv\Scripts\activate.bat`
+
+- `.\venv\Scripts\activate.ps1`
 
 ## Deactivate environment
 
