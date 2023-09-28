@@ -1,5 +1,7 @@
 ![main](https://github.com/micheltlutz/dev-challenge/actions/workflows/python-tests.yml/badge.svg?branch=main)
 [![codecov](https://codecov.io/gh/micheltlutz/dev-challenge/graph/badge.svg?token=UvaQd65VVD)](https://codecov.io/gh/micheltlutz/dev-challenge)
+[![codebeat badge](https://codebeat.co/badges/7a32bbcb-c4da-48c2-b2f1-9118b3e6a37f)](https://codebeat.co/projects/github-com-micheltlutz-dev-challenge-main)
+
 
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
 
