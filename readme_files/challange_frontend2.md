@@ -1,7 +1,7 @@
 # Front-end Developer Technical Challenge 2
 
 ## Objective:
-Your primary mission is to design and implement a user-friendly interface that interacts with the `user` route for user registration. You are expected to craft this interface in your preferred language/framework.
+Your primary mission is to design and implement a user-friendly interface that interacts with the `users` route for user registration. You are expected to craft this interface in your preferred language/framework.
 
 ## Specifications:
 
@@ -26,7 +26,7 @@ The form structure should closely align with this JSON model:
 
 ### 2. API Communication:
 
-- To gain a better understanding of the request details and expected API responses, you are encouraged to refer to the comprehensive API documentation available at: [http://localhost/docs#/users/create_user_users__post](http://localhost/docs#/users/create_user_users__post).
+- To gain a better understanding of the request details and expected API responses, you are encouraged to refer to the comprehensive API documentation available at: [http://localhost:8000/docs#/users/create_user_users__post](http://localhost:8000/docs#/users/create_user_users__post).
 
 ### Bonus:
 
