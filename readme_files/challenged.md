@@ -78,10 +78,13 @@ For front-end developers, we provide a ready-to-use API set up to run in a Docke
 
 - [Challange 1. Contact Form](challange_frontend1.md)
 - [Challange 2. Create User Form](challange_frontend2.md)
+- [Challange 3. Login Form](challange_frontend3.md)
+- [Challange 4. Dashboard](challange_frontend4.md)
  
 ### Back-End
 
 The challenge set for back-end developers is to replicate the already developed routes in their preferred programming language and then produce relevant documentation.
 
-- [Challange 1. Contact Form](challange_backend1.md)
-- [Challange 2. Create User Form](challange_backend2.md)
+- [Challange 1. Contact Route](challange_backend1.md)
+- [Challange 2. Create User Route](challange_backend2.md)
+- [Challange 3. Login Route](challange_backend3.md)
