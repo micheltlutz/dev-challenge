@@ -76,15 +76,15 @@ Routes with authentication have a padlock icon
 
 For front-end developers, we provide a ready-to-use API set up to run in a Docker environment. This API includes routes for listings, authentication, user creation, login, among other features. This allows the developer to focus primarily on the design and implementation of interfaces.
 
-- [Challange 1. Contact Form](challange_frontend1.md)
-- [Challange 2. Create User Form](challange_frontend2.md)
-- [Challange 3. Login Form](challange_frontend3.md)
-- [Challange 4. Dashboard](challange_frontend4.md)
+- [Challenge 1. Contact Form](challenge_frontend1.md)
+- [Challenge 2. Create User Form](challenge_frontend2.md)
+- [Challenge 3. Login Form](challenge_frontend3.md)
+- [Challenge 4. Dashboard](challenge_frontend4.md)
  
 ### Back-End
 
 The challenge set for back-end developers is to replicate the already developed routes in their preferred programming language and then produce relevant documentation.
 
-- [Challange 1. Contact Route](challange_backend1.md)
-- [Challange 2. Create User Route](challange_backend2.md)
-- [Challange 3. Login Route](challange_backend3.md)
+- [Challenge 1. Contact Route](challenge_backend1.md)
+- [Challenge 2. Create User Route](challenge_backend2.md)
+- [Challenge 3. Login Route](challenge_backend3.md)
