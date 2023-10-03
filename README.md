@@ -17,7 +17,7 @@ The challenge set for back-end developers is to replicate the already developed 
 ### This **README** is currently divided into two parts:
 
 In Instructions for challengers you will find instructions for completing the challenge by creating an interface, whether web or mobile, for the routes existing in the project documentation and also challenges for creating the same routes using your preferred programming language.
-- [Instructions and challanges](readme_files/challenged.md)
+- [Instructions and challenges](readme_files/challenged.md)
 
 In Instructions for contributors you will find instructions to contribute to the project, whether to correct bugs or add new features.
 - [Instructions for contributors](readme_files/contributors.md)
