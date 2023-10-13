@@ -60,7 +60,7 @@ docker stop dev-challenge-demo
 
 ## Api Documentation information
 
-The project documentation uses swagger, where you will find the routes, parameters and schematics of each of the routes created for your challenge, in addition to being able to execute the routes directly in the documentation.
+The project documentation uses swagger, you can access it after running the docker container and accessing the address below in the browser, where you will find the routes, parameters and schemes of each of the routes created for your challenge, in addition to being able to execute the routes directly in the documentation.
 
 - [http://localhost:8000/docs](http://localhost:8000/docs)
 
