@@ -5,16 +5,27 @@ on:
     branches: [ release ]
   
 jobs:
-  test:
-
+  deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.10]
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan ${{ secrets.PROD_DEPLOY_DOMAIN }} >> ~/.ssh/known_hosts
+
+    - name: Deploy to PythonAnywhere
+      env:
+        PA_USER: ${{ secrets.PROD_DEPLOY_USERNAME }}
+        PA_HOST: ${{ secrets.PROD_DEPLOY_DOMAIN }}
+        PROJECT_PATH: ${{ secrets.PROD_PROJECT_FOLDER }}
+      run: |
+        ssh $PA_USER@$PA_HOST "cd $PROJECT_PATH && git pull origin release"
 
     - uses: jensvog/pythonanywhere-webapp-reload-action@v1
       with:
