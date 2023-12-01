@@ -1,6 +1,7 @@
+import os
 from datetime import timedelta, datetime
 
-from decouple import config
+from dotenv import load_dotenv
 from fastapi import APIRouter, Depends, HTTPException, status
 from jose import jwt
 from sqlalchemy.orm import Session
@@ -10,6 +11,7 @@ from app.database.db import SessionLocal
 from app.user.user_model import User
 from app.user.user_schema import UserLogin
 
+load_dotenv()
 router = APIRouter()
 
 
@@ -24,9 +26,9 @@ def get_db():
 
 def create_access_token(data: dict):
     to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(minutes=int(config("TOKEN_EXPIRES")))
+    expire = datetime.utcnow() + timedelta(minutes=int(os.getenv("TOKEN_EXPIRES")))
     to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, config("SECRET"), algorithm=config("ALGORITHM"))
+    encoded_jwt = jwt.encode(to_encode, os.getenv("SECRET"), algorithm=os.getenv("ALGORITHM"))
     return encoded_jwt
 
 
