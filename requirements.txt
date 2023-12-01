@@ -9,4 +9,4 @@ bcrypt
 python-multipart
 Faker~=19.6.2
 PyJWT~=2.8.0
-python-decouple
+python-dotenv

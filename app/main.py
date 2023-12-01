@@ -1,6 +1,7 @@
 import logging
+import os
 
-from decouple import config
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -16,9 +17,11 @@ from app.user import user_routes
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+load_dotenv()  # Carrega as variáveis de ambiente do arquivo .env
 app = FastAPI()
 
-print(config("PROJECT_NAME"))
+
+print(os.getenv("PROJECT_NAME"))
 
 
 # title=config("PROJECT_NAME")

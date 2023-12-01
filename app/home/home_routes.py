@@ -1,8 +1,11 @@
-from decouple import config
+import os
+
+from dotenv import load_dotenv
 from fastapi import APIRouter, status
 from fastapi.responses import JSONResponse
 from fastapi.responses import RedirectResponse
 
+load_dotenv()
 router = APIRouter()
 
 
@@ -23,6 +26,6 @@ def health_check():
 @router.get("/version")
 def health_check():
     return JSONResponse(
-        content={"version": config("VERSION")},
+        content={"version": os.getenv("VERSION")},
         status_code=status.HTTP_200_OK
     )
