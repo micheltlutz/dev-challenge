@@ -19,7 +19,7 @@ credentials_exception = HTTPException(
 def get_current_user(authorization: HTTPAuthorizationCredentials = Security(security)):
     token = authorization.credentials
     try:
-        payload = jwt.decode(token, os.getenv("SECRET"), algorithms=[os.getenv("algorithm")])
+        payload = jwt.decode(token, os.getenv("SECRET"), algorithms=[os.getenv("ALGORITHM")])
         user_id = payload.get("sub")
 
         if user_id is None:
