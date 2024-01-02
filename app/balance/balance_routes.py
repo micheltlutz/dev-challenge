@@ -18,13 +18,13 @@ def get_db():
 
 
 @router.get("/balance/", response_model=Balance, description="""
-    Esta rota retorna o saldo calculado de todas as transações de um usuário.
+    This route returns the calculated balance of all transactions for a user.
     
-    - Regra para **Depósito**: Se o usuário depositar from_user == to_user, o valor é somado ao saldo.
-    - Regra para **Depósito**: Se o usuário depositar from_user != to_user, o valor é somado ao saldo.
-    - Regra para **Saque**: Se o usuário sacar da sua própria conta, o valor é subtraído do saldo.
-    - Regra para **Transferência**: Se o usuário transferir para sua própria conta (to_user == from_user), o valor é somado ao saldo.
-    - Regra para **Transferência**: Se o usuário transferir para outra conta (to_user != from_user), o valor é subtraído do saldo.
+    - Rule for **Deposit**: If the user deposits from_user == to_user, the amount is added to the balance.
+    - Rule for **Deposit**: If the user deposits from_user != to_user, the amount is added to the balance.
+    - Rule for **Withdrawal**: If the user withdraws from their own account, the amount is subtracted from the balance.
+    - Rule for **Transfer**: If the user transfers to their own account (to_user == from_user), the amount is added to the balance.
+    - Rule for **Transfer**: If the user transfers to another account (to_user != from_user), the amount is subtracted from the balance.
     """)
 def get_calculated_balance(db: Session = Depends(get_db), _: str = Depends(get_current_user)):
     statements = db.query(Statement).all()
