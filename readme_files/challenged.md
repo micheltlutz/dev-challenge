@@ -80,6 +80,8 @@ For front-end developers, we provide a ready-to-use API set up to run in a Docke
 - [Challenge 2. Create User Form](challenge_frontend2.md)
 - [Challenge 3. Login Form](challenge_frontend3.md)
 - [Challenge 4. Dashboard](challenge_frontend4.md)
+- [Challenge 5. Show Amount and Pagination Statent](challenge_frontend5.md)
+- [Challenge 6. Profile Edit](challenge_frontend6.md)
  
 ### Back-End
 
@@ -88,3 +90,6 @@ The challenge set for back-end developers is to replicate the already developed 
 - [Challenge 1. Contact Route](challenge_backend1.md)
 - [Challenge 2. Create User Route](challenge_backend2.md)
 - [Challenge 3. Login Route](challenge_backend3.md)
+- [Challenge 4. Statements](challenge_backend4.md)
+- [Challenge 5. Amount](challenge_backend5.md)
+- [Challenge 6. Profile Edit](challenge_backend6.md)
