@@ -1,5 +1,4 @@
 import logging
-import os
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
@@ -21,8 +20,7 @@ load_dotenv()  # Carrega as variáveis de ambiente do arquivo .env
 app = FastAPI()
 
 
-print(os.getenv("PROJECT_NAME"))
-
+# print(os.getenv("PROJECT_NAME"))
 
 # title=config("PROJECT_NAME")
 # CORS
@@ -33,7 +31,6 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],
 )
-
 
 def init_db():
     try:
