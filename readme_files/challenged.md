@@ -6,7 +6,7 @@ Follow the instructions below to carry out the procedure.
 
 ## News 
 
-Now, the challenges are available in the cloud as I have deployed the API to streamline the initial access. Check out the documentation at: https://dev-challenge.fly.dev/docs. However, you still have the option to use the challenges locally, either by using Docker or by setting up the Python environment.
+Now, the challenges are available in the cloud as I have deployed the API to streamline the initial access. Check out the documentation at: [https://dev-challenge.micheltlutz.me/docs](https://dev-challenge.micheltlutz.me/docs). However, you still have the option to use the challenges locally, either by using Docker or by setting up the Python environment.
 
 
 ## Requirements to run local
