@@ -1,4 +1,4 @@
-fastapi[all]~=0.103.2
+fastapi[all]>=0.109.1
 uvicorn
 passlib~=1.7.4
 python-jose
