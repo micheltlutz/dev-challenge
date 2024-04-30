@@ -67,7 +67,7 @@ docker stop dev-challenge-demo
 The project documentation uses swagger, you can access it after running the docker container and accessing the address below in the browser, where you will find the routes, parameters and schemes of each of the routes created for your challenge, in addition to being able to execute the routes directly in the documentation.
 
 - [http://localhost:8000/docs](http://localhost:8000/docs)
-- [Online Docs](https://dev-challenge.micheltlutz.me/docs)
+- [Online API and Docs](https://dev-challenge.micheltlutz.me/docs)
 
 Routes with authentication have a padlock icon
 
@@ -85,7 +85,7 @@ Access the [Figma link](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafi
 
 ### Front-End
 
-For front-end developers, we provide a ready-to-use API set up to run in a Docker environment. This API includes routes for listings, authentication, user creation, login, among other features. This allows the developer to focus primarily on the design and implementation of interfaces.
+For front-end developers, we provide a ready-to-use API set up to run in a Docker environment or online usage. This API includes routes for listings, authentication, user creation, login, among other features. This allows the developer to focus primarily on the design and implementation of interfaces.
 
 - [Challenge 1. Contact Form No Figma](challenge_frontend1.md)
 - [Challenge 2. Create User Form](challenge_frontend2.md)
@@ -95,15 +95,15 @@ For front-end developers, we provide a ready-to-use API set up to run in a Docke
 - [Challenge 6. Profile Edit](challenge_frontend6.md)
 
 
-### Mobile - WIP
+### Mobile
 
-For front-end developers, we provide a ready-to-use API set up to run in a Docker environment. This API includes routes for listings, authentication, user creation, login, among other features. This allows the developer to focus primarily on the design and implementation of interfaces.
+For Mobile developers, we provide a ready-to-use API set up to run in a Docker environment or online usage. This API includes routes for listings, authentication, user creation, login, among other features. This allows the developer to focus primarily on the design and implementation of interfaces.
 
-- [Challenge 1. Create User Form WIP]()
-- [Challenge 2. Login Form WIP]()
-- [Challenge 3. Dashboard WIP]()
-- [Challenge 4. Show Amount and Pagination Statent WIP]()
-- [Challenge 5. Profile Edit WIP]()
+- [Challenge 1. Create User Form](challenge_frontend_mobile1.md)
+- [Challenge 2. Login Form](challenge_frontend_mobile2.md)
+- [Challenge 3. Dashboard](challenge_frontend_mobile3.md)
+- [Challenge 4. Show Amount and Pagination Statent](challenge_frontend_mobile4.md)
+- [Challenge 5. Profile Edit](challenge_frontend_mobile5.md)
 
  
 ### Back-End
