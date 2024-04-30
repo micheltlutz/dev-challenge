@@ -1,4 +1,4 @@
-# Front-end Developer Technical Challenge 5 - Statement List and Amount
+# Mobile Developer Technical Challenge 4 - Statement List and Amount
 
 Its main mission is to design and implement a screen that displays the user's balance and their list of bank transactions with pagination, hiding the display of values.
 
@@ -6,9 +6,9 @@ You are expected to create this interface in your preferred language/framework.
 
 ### Figma
 
-Access the [Figma link](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafio-para-devs---App-%2F-Dashboard-%7C-UX%2FUI?type=design&node-id=13-5855&mode=design&t=1oLA9vtlXknWRtig-4) to follow the style guide and components in your interfaces.
+Access the [Figma link](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafio-para-devs---App-%2F-Dashboard-%7C-UX%2FUI?type=design&node-id=19-1283&mode=design&t=1oLA9vtlXknWRtig-4) to follow the style guide and components in your interfaces.
 
-![Statement](images/Statement-Web.png)
+![Statement](images/Statement-Mobile.png)
 
 ### Pagination:
 

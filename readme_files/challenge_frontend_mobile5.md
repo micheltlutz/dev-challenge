@@ -1,4 +1,4 @@
-# Front-end Developer Technical Challenge 6 - Edit Profile information
+# Mobile Developer Technical Challenge 5 - Edit Profile information
 
 Its main mission is to design and implement a screen that displays user registration data and allows editing and saving this data.
 
@@ -6,9 +6,9 @@ You are expected to create this interface in your preferred language/framework.
 
 ### Figma
 
-Access the [Figma link](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafio-para-devs---App-%2F-Dashboard-%7C-UX%2FUI?type=design&node-id=19-3597&mode=design&t=1oLA9vtlXknWRtig-4) to follow the style guide and components in your interfaces.
+Access the [Figma link](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafio-para-devs---App-%2F-Dashboard-%7C-UX%2FUI?type=design&node-id=19-4040&mode=design&t=1oLA9vtlXknWRtig-4) to follow the style guide and components in your interfaces.
 
-![Profile](images/Profile-Web.png)
+![Profile](images/Profile-Mobile.png)
 
 ## Specifications:
 

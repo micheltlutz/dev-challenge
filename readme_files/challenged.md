@@ -67,6 +67,7 @@ docker stop dev-challenge-demo
 The project documentation uses swagger, you can access it after running the docker container and accessing the address below in the browser, where you will find the routes, parameters and schemes of each of the routes created for your challenge, in addition to being able to execute the routes directly in the documentation.
 
 - [http://localhost:8000/docs](http://localhost:8000/docs)
+- [Online Docs](https://dev-challenge.micheltlutz.me/docs)
 
 Routes with authentication have a padlock icon
 
@@ -76,11 +77,17 @@ Routes with authentication have a padlock icon
 
 ## Challanges
 
+
+### Figma
+
+Access the [Figma link](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafio-para-devs---App-%2F-Dashboard-%7C-UX%2FUI?type=design&node-id=1%3A655&mode=design&t=aSjbTNYsb0UGO0yp-1) to follow the style guide and components in your interfaces.
+
+
 ### Front-End
 
 For front-end developers, we provide a ready-to-use API set up to run in a Docker environment. This API includes routes for listings, authentication, user creation, login, among other features. This allows the developer to focus primarily on the design and implementation of interfaces.
 
-- [Challenge 1. Contact Form](challenge_frontend1.md)
+- [Challenge 1. Contact Form No Figma](challenge_frontend1.md)
 - [Challenge 2. Create User Form](challenge_frontend2.md)
 - [Challenge 3. Login Form](challenge_frontend3.md)
 - [Challenge 4. Dashboard](challenge_frontend4.md)
