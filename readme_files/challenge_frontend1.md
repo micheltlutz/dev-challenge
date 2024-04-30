@@ -1,6 +1,7 @@
 # Front-end Developer Technical Challenge 1
 
 ## Objective:
+
 Implement a graphical user interface that allows users to submit contact information through a form. The interface should be developed in your preferred language/framework and will be used to communicate with a REST API.
 
 ## Specifications:
@@ -12,6 +13,7 @@ Implement a graphical user interface that allows users to submit contact informa
     - Message (multiline text field)
     - Interest (text field)
   The form should have a submit button to send the information.
+
 
 ### 2. API Communication:
 

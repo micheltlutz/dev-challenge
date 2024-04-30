@@ -1,4 +1,4 @@
-# Front-end Developer Technical Challenge 4 - Dashboard
+# Mobile Developer Technical Challenge 3 - Dashboard and Side Menu
 
 ## Objective:
 
@@ -18,9 +18,13 @@ Creation of a dashboard with a side menu with the following items:
 
 ### Figma
 
-Access the [Figma link](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafio-para-devs---App-%2F-Dashboard-%7C-UX%2FUI?type=design&node-id=13-3891&mode=design&t=1oLA9vtlXknWRtig-4) to follow the style guide and components in your interfaces.
+Access the [Figma link](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafio-para-devs---App-%2F-Dashboard-%7C-UX%2FUI?type=design&node-id=13-4267&mode=design&t=1oLA9vtlXknWRtig-4) to follow the style guide and components in your interfaces.
 
-![Dashboard](images/Home-Web.png)
+
+| Home                  | Side Menu               |
+|-----------------------|-------------------------|
+| ![Home](images/Home-Mobile.png) | ![Side Menu](images/Menu-Mobile.png) |
+
 
 ### 1. Home
 

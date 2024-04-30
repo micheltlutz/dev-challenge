@@ -1,6 +1,5 @@
-# Front-end Developer Technical Challenge 2
-
 ## Objective:
+
 Your primary mission is to design and implement a user-friendly interface that interacts with the `users` route for user registration. You are expected to craft this interface in your preferred language/framework.
 
 ## Specifications:
@@ -9,7 +8,7 @@ Your primary mission is to design and implement a user-friendly interface that i
 
 Access the [Figma link](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafio-para-devs---App-%2F-Dashboard-%7C-UX%2FUI?type=design&node-id=1%3A655&mode=design&t=aSjbTNYsb0UGO0yp-1) to follow the style guide and components in your interfaces.
 
-![Create Account Form](images/Create account-web.png)
+![Create Account Form](images/Create account-Mobile.png)
 
 ### 1. User Registration Form:
 
@@ -33,6 +32,9 @@ The form structure should closely align with this JSON model:
 ### 2. API Communication:
 
 - To gain a better understanding of the request details and expected API responses, you are encouraged to refer to the comprehensive API documentation available at: [http://localhost:8000/docs#/users/create_user_users__post](http://localhost:8000/docs#/users/create_user_users__post).
+
+[Online API Doc](https://dev-challenge.micheltlutz.me/docs)
+
 
 ### Bonus:
 
