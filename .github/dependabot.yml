@@ -1,0 +1,44 @@
+version: 2
+
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels: ["dependencies"]
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+    groups:
+      # One PR per group keeps the review surface small. Security fixes still
+      # arrive as their own PRs regardless of grouping.
+      fastapi-stack:
+        patterns: ["fastapi", "starlette", "uvicorn*", "pydantic*"]
+      dev-tooling:
+        patterns: ["pytest*", "ruff", "httpx", "jsonschema", "PyYAML", "pip-audit"]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    labels: ["dependencies", "ci"]
+    commit-message:
+      prefix: "chore(ci)"
+
+  - package-ecosystem: npm
+    directory: "/harness/ui/web"
+    schedule:
+      interval: monthly
+    labels: ["dependencies", "harness"]
+    commit-message:
+      prefix: "chore(deps)"
+
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: monthly
+    labels: ["dependencies", "ci"]
+    commit-message:
+      prefix: "chore(deps)"

@@ -1,0 +1,29 @@
+name: Deploy to Fly.io
+
+# Manual by default. Flip on the `push` trigger below once you are happy with
+# the pipeline. Requires two repository secrets:
+#   FLY_API_TOKEN  - from `fly tokens create deploy`
+#   APP_SECRET     - the JWT signing key; set it with `fly secrets set SECRET=...`
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

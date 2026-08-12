@@ -1,0 +1,27 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+filterwarnings = [
+    "ignore::DeprecationWarning:jose.*",
+]
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["app/config.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+exclude = ["venv", ".venv", "build", "dist"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4"]
+ignore = [
+    # FastAPI's dependency-injection style is function calls in defaults.
+    "B008",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# conftest must configure the environment before importing the app.
+"tests/conftest.py" = ["E402"]

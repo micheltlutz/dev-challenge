@@ -1,12 +1,36 @@
-fastapi[all]>=0.109.1
-uvicorn
-passlib~=1.7.4
-python-jose
-sqlalchemy~=2.0.21
-pydantic~=2.4.2
-pydantic[email]
-bcrypt
-python-multipart
-Faker~=19.6.2
-PyJWT~=2.8.0
-python-dotenv
+# Runtime dependencies for the reference API.
+#
+# These are floors (>=), not compatible-release pins (~=), on purpose. A pin
+# like `PyJWT~=2.8.0` looks careful but blocks every security patch outside
+# 2.8.x, which is exactly how this project ended up shipping a PyJWT with five
+# open advisories. Cap only where a major version is known to break us.
+#
+# Keep this list minimal. `fastapi[all]` used to be here and pulled in ujson,
+# orjson, jinja2, itsdangerous and more that the project never imports -- all
+# attack surface for no benefit.
+
+fastapi>=0.141.1
+uvicorn[standard]>=0.35
+
+# Explicit floor: FastAPI does not cap starlette, and versions below 1.3.1 carry
+# open advisories (PYSEC-2026-161/248/249/2280/2281).
+starlette>=1.3.1
+
+pydantic[email]>=2.9
+sqlalchemy>=2.0.36,<3
+
+# >=2.13.0 clears CVE-2026-32597 (unknown `crit` headers), CVE-2026-48522/48524
+# (PyJWKClient SSRF and DoS), CVE-2026-48523 (algorithm allow-list bypass),
+# CVE-2026-48525 (detached-JWS DoS) and CVE-2026-48526 (public-key JWK accepted
+# as an HMAC secret).
+PyJWT>=2.13.0
+
+# Password hashing. passlib used to wrap this, but passlib 1.7.4 is unmaintained
+# and raises on bcrypt >= 4.1, which broke user registration outright.
+bcrypt>=4.1,<6
+
+# Only used by GET /generate-random-statement/. The seed script deliberately
+# does not use it -- see scripts/seed.py.
+Faker>=37
+
+python-dotenv>=1.0

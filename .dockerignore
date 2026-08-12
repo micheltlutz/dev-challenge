@@ -1,1 +1,14 @@
 __pycache__
+*.py[cod]
+.git
+.github
+.idea
+.pytest_cache
+.ruff_cache
+venv
+.venv
+tests
+readme_files
+*.env
+!*.env.example
+.DS_Store

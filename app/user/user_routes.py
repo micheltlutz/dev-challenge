@@ -2,24 +2,14 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
-from app.database.db import SessionLocal
-from app.dependencies.current_user import get_current_user
+from app.database.db import get_db
+from app.dependencies.current_user import get_current_user, get_current_user_record
 from app.user.user_model import User
-from app.user.user_schema import UserCreate, UserEdit
+from app.user.user_schema import UserCreate, UserEdit, UserPublic
 
 router = APIRouter()
 
 
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
-# Create a new user
 @router.post("/users/", status_code=201)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.userid == user.userid).first()
@@ -35,16 +25,39 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
     return JSONResponse(
-        content={'msg': 'success'},
-        status_code=status.HTTP_201_CREATED
+        content={"msg": "success"},
+        status_code=status.HTTP_201_CREATED,
     )
 
 
-@router.put("/users/{user_id}", response_model=UserEdit)
-def update_user(user_id: int, user_edit: UserEdit, db: Session = Depends(get_db), _: str = Depends(get_current_user)):
+@router.get(
+    "/users/me",
+    response_model=UserPublic,
+    description=(
+        "The authenticated user's own profile. A client needs this to learn its "
+        "`id` before it can call `PUT /users/{user_id}` -- the token carries the "
+        "e-mail, not the numeric id."
+    ),
+)
+def read_current_user(user: User = Depends(get_current_user_record)):
+    return user
+
+
+@router.put("/users/{user_id}", response_model=UserPublic)
+def update_user(
+    user_id: int,
+    user_edit: UserEdit,
+    db: Session = Depends(get_db),
+    current_userid: str = Depends(get_current_user),
+):
     db_user = db.query(User).filter(User.id == user_id).first()
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
+
+    if db_user.userid != current_userid:
+        raise HTTPException(
+            status_code=403, detail="You can only edit your own profile"
+        )
 
     if user_edit.password:
         db_user.hash_password(user_edit.password)

@@ -1,18 +1,19 @@
-import os
-
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-load_dotenv()
+from app.config import DATABASE_URL, SQL_ECHO
 
-
-engine = create_engine(os.getenv("DATABASE_URL"), echo=True)
-with engine.connect() as conn:
-    pass
+engine = create_engine(DATABASE_URL, echo=SQL_ECHO)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
+
+def get_db():
+    """FastAPI dependency yielding a request-scoped session."""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

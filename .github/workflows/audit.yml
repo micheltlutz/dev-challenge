@@ -1,0 +1,65 @@
+name: Dependency audit
+
+# Dependabot opens PRs when an advisory lands. This runs the same check inside
+# CI, so a vulnerable dependency also fails the build rather than only sitting
+# in a tab -- and the weekly schedule catches advisories published against
+# dependencies that nobody has touched.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pip-audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Audit runtime dependencies
+        uses: pypa/gh-action-pip-audit@v1.1.0
+        with:
+          inputs: requirements.txt
+
+      - name: Audit development dependencies
+        uses: pypa/gh-action-pip-audit@v1.1.0
+        with:
+          inputs: requirements_for_dev.txt
+
+  secret-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: No .env file is tracked
+        run: |
+          if git ls-files | grep -E '(^|/)\.env$'; then
+            echo "A .env file is tracked. Use app/.env.example and keep secrets out of git."
+            exit 1
+          fi
+          echo "No tracked .env files."
+
+      - name: No private keys in the working tree
+        run: |
+          if grep -rIlE 'BEGIN (RSA |EC |OPENSSH |PGP )?PRIVATE KEY' \
+               --exclude-dir=.git --exclude-dir=venv --exclude-dir=node_modules .; then
+            echo "A private key is committed."
+            exit 1
+          fi
+          echo "No private keys found."

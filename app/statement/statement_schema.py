@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class StatementCreate(BaseModel):
@@ -14,5 +14,4 @@ class StatementCreate(BaseModel):
     bank_name: str
     authentication: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

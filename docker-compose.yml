@@ -1,15 +1,24 @@
-version: '3.8'
-
 services:
-  web:
+  api:
     build:
       context: .
       dockerfile: Dockerfile
     image: dev-challenge:latest
+    container_name: dev-challenge-demo
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
+      - ./app:/code/app
     environment:
-      - PYTHONUNBUFFERED=1
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+      PYTHONUNBUFFERED: "1"
+      # Override in a local .env or here. Without it the app generates an
+      # ephemeral key on every restart, which invalidates existing tokens.
+      SECRET: ${SECRET:-}
+      CORS_ALLOW_ORIGINS: ${CORS_ALLOW_ORIGINS:-*}
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health-check')\""]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
