@@ -33,4 +33,4 @@ bcrypt>=4.1,<6
 # does not use it -- see scripts/seed.py.
 Faker>=37
 
-python-dotenv>=1.0
+python-dotenv>=1.2.2
