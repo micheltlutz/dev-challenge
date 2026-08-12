@@ -1,118 +1,151 @@
-## Instructions for challenged
+# Instructions for challengers
 
-This project is already prepared with a instructions for you to create a docker image and run it so that you have your api environment without the need to configure the entire project.
+Everything you need to start: an API to build against, a design to build to, and
+a harness that tells you when you are done.
 
-Follow the instructions below to carry out the procedure.
+## 1. Get an API
 
-## News 
+You need the reference API running somewhere. Pick the cheapest option that
+works for you.
 
-Now, the challenges are available in the cloud as I have deployed the API to streamline the initial access. Check out the documentation at: [https://dev-challenge.micheltlutz.me/docs](https://dev-challenge.micheltlutz.me/docs). However, you still have the option to use the challenges locally, either by using Docker or by setting up the Python environment.
+### Option A — use the hosted one (nothing to install)
 
-
-## Requirements to run local
-
-- Terminal
-
-**For Linux**
-- [Docker Engine](https://docs.docker.com/engine/install/ubuntu/)
-
-**For macOS**
-- [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation#macos)
-
-**Windows**
-- [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)
-- [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation#windows)
-
-> **Attention!:** If you are using Windows, you need to run the terminal as administrator.
->
-> Prefer Rancher Desktop, it is free, more complete and has more features
-
-## 1. Create Image
-
-```bash
-docker build -t "dev-challenge" .
+```
+https://dev-challenge.micheltlutz.me
 ```
 
-### 2. Check if image was created
+Docs: <https://dev-challenge.micheltlutz.me/docs>
+
+Good for front-end and mobile work. Note it is a **shared** instance — register
+your own account rather than relying on the demo data staying pristine.
+
+### Option B — Docker
 
 ```bash
-docker images
-```
-## 3. Run container
-
-```bash
+docker build -t dev-challenge .
 docker run -d --name dev-challenge-demo -p 8000:8000 dev-challenge:latest
 ```
 
-## 4. Check if container is running
+Then <http://localhost:8000/docs>. Stop it with
+`docker stop dev-challenge-demo`.
+
+Or, with compose:
 
 ```bash
-docker ps
+docker compose up
 ```
 
-## 5. Access the API
+**Requirements:** Docker Engine on Linux, [Rancher
+Desktop](https://docs.rancherdesktop.io/getting-started/installation) on macOS
+and Windows (free, and more complete than the alternatives). On Windows you
+also need [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install), and
+you must run the terminal as administrator.
 
-- [http://localhost:8000](http://localhost:8000)
+### Option C — Python
 
-## Stop container
+See [contributors.md](contributors.md).
 
-When you need to stop the container, run the code below in your terminal
+## 2. Log in with the demo data
+
+Two seeded accounts, both with the password `Challenge@123`:
+
+| User | Statements | Balance |
+|---|---|---|
+| `john.doe@email.com` | 5 | 15491.00 |
+| `jane.roe@email.com` | 1 | 4200.00 |
+
+The database also holds 40 statements belonging to neither. If those show up in
+either user's results, something is scoping data wrong.
+
+Get a token:
 
 ```bash
-docker stop dev-challenge-demo
+curl -X POST http://localhost:8000/auth/ \
+  -H 'Content-Type: application/json' \
+  -d '{"userid":"john.doe@email.com","password":"Challenge@123"}'
 ```
 
-## Api Documentation information
+Then send it as `Authorization: Bearer <access_token>` on protected routes.
+In Swagger UI those carry a padlock:
 
-The project documentation uses swagger, you can access it after running the docker container and accessing the address below in the browser, where you will find the routes, parameters and schemes of each of the routes created for your challenge, in addition to being able to execute the routes directly in the documentation.
+![Routes with authentication](images/swagger-auth-padlock.png)
 
-- [http://localhost:8000/docs](http://localhost:8000/docs)
-- [Online API and Docs](https://dev-challenge.micheltlutz.me/docs)
+![Schema example](images/swagger-schema-contact.png)
 
-Routes with authentication have a padlock icon
+## 3. Pick a challenge
 
-![Routes with authentication](images/swagger_example_auth.png "Routes with authentication have a padlock icon")
+All challenges live in **[`specs/`](../specs/README.md)** with numbered
+acceptance criteria.
 
-![Schema Example](images/schema_example_contact.png "Simple example of a schema")
+| Track | What you do | Start at |
+|---|---|---|
+| **Back-end** | Reimplement the API in your language | [`backend-01-contact`](../specs/challenges/backend-01-contact/spec.md) |
+| **Web** | Build the interface against the provided API | [`web-01-contact-form`](../specs/challenges/web-01-contact-form/spec.md) |
+| **Mobile** | Build the native app against the provided API | [`mobile-01-create-account`](../specs/challenges/mobile-01-create-account/spec.md) |
+| **Fullstack** | Own both ends of the contract | [`fullstack-01-contact`](../specs/challenges/fullstack-01-contact/spec.md) |
 
-## Challanges
+The full index, with difficulty and time estimates, is in
+[`specs/README.md`](../specs/README.md).
 
+## 4. Read the design
 
-### Figma
+Front-end and mobile challenges are built to a real design.
 
-Access the [Figma link](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafio-para-devs---App-%2F-Dashboard-%7C-UX%2FUI?type=design&node-id=1%3A655&mode=design&t=aSjbTNYsb0UGO0yp-1) to follow the style guide and components in your interfaces.
+- **Figma:** [Desafio para devs - App / Dashboard | UX/UI](https://www.figma.com/file/Q44nlEVrODE7W6iBFRVPZL/Desafio-para-devs---App-%2F-Dashboard-%7C-UX%2FUI?node-id=1-655)
+- **Without Figma:** [`specs/design/style-guide.md`](../specs/design/style-guide.md)
+- **Tokens you can import:** [`specs/design/tokens.css`](../specs/design/tokens.css)
+- **Screen inventory:** [`specs/design/screens.md`](../specs/design/screens.md)
 
+Each challenge deep-links to its own Figma node.
 
-### Front-End
+## 5. Build in your own repository
 
-For front-end developers, we provide a ready-to-use API set up to run in a Docker environment or online usage. This API includes routes for listings, authentication, user creation, login, among other features. This allows the developer to focus primarily on the design and implementation of interfaces.
+Create your own repo. You are not expected to fork this one.
 
-- [Challenge 1. Contact Form No Figma](challenge_frontend1.md)
-- [Challenge 2. Create User Form](challenge_frontend2.md)
-- [Challenge 3. Login Form](challenge_frontend3.md)
-- [Challenge 4. Dashboard](challenge_frontend4.md)
-- [Challenge 5. Show Amount and Pagination Statent](challenge_frontend5.md)
-- [Challenge 6. Profile Edit](challenge_frontend6.md)
+Your project should have a README saying how to run it, what you chose, and
+why. That reasoning is part of what you are demonstrating.
 
+## 6. Verify
 
-### Mobile
+This is the part that makes it a lab rather than a reading list. The harness
+checks your work against the same acceptance criteria the spec lists:
 
-For Mobile developers, we provide a ready-to-use API set up to run in a Docker environment or online usage. This API includes routes for listings, authentication, user creation, login, among other features. This allows the developer to focus primarily on the design and implementation of interfaces.
+```bash
+# Linux
+docker run --rm --network host ghcr.io/micheltlutz/dev-challenge-harness \
+  --base-url http://localhost:3000 --challenge backend-05-balance
 
-- [Challenge 1. Create User Form](challenge_frontend_mobile1.md)
-- [Challenge 2. Login Form](challenge_frontend_mobile2.md)
-- [Challenge 3. Dashboard](challenge_frontend_mobile3.md)
-- [Challenge 4. Show Amount and Pagination Statent](challenge_frontend_mobile4.md)
-- [Challenge 5. Profile Edit](challenge_frontend_mobile5.md)
+# macOS / Windows (--network host does not bridge to the host there)
+docker run --rm ghcr.io/micheltlutz/dev-challenge-harness \
+  --base-url http://host.docker.internal:3000 --challenge backend-05-balance
+```
 
- 
-### Back-End
+You get a scorecard per criterion, with the criterion's text next to the
+result. See [`harness/README.md`](../harness/README.md) for the web UI runner
+and the other options.
 
-The challenge set for back-end developers is to replicate the already developed routes in their preferred programming language and then produce relevant documentation.
+Mobile challenges are self-reviewed — native UI cannot be checked the same way.
+Each mobile spec says so plainly.
 
-- [Challenge 1. Contact Route](challenge_backend1.md)
-- [Challenge 2. Create User Route](challenge_backend2.md)
-- [Challenge 3. Login Route](challenge_backend3.md)
-- [Challenge 4. Statements](challenge_backend4.md)
-- [Challenge 5. Amount](challenge_backend5.md)
-- [Challenge 6. Profile Edit](challenge_backend6.md)
+## 7. Working with a coding agent
+
+Using Claude Code, Copilot or Cursor on these challenges is encouraged — being
+good at that is a real skill now. The repo ships instructions so your agent
+understands the spec layer: see [`AGENTS.md`](../AGENTS.md).
+
+By default the agent behaves as a **mentor**: it plans with you, reviews your
+code and explains failing criteria, but does not hand you the implementation.
+If you would rather study a worked solution, ask it directly — the escape hatch
+is documented, not hidden.
+
+## 8. Share it
+
+Open a [Submit your solution](https://github.com/micheltlutz/dev-challenge/issues/new/choose)
+issue and your repo gets linked from `SOLUTIONS.md`.
+
+---
+
+**Found a mistake in a spec?** That is a real contribution —
+[open an issue](https://github.com/micheltlutz/dev-challenge/issues/new/choose).
+The specs are verified against the API by CI, but wording and intent still need
+human eyes.

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dev-challenge-harness"
+version = "2.0.0"
+description = "Verify a dev-challenge solution against its acceptance criteria."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Michel Anderson Lütz Teixeira" }]
+keywords = ["testing", "acceptance-criteria", "contract-testing", "learning"]
+
+dependencies = [
+    "pytest>=8",
+    "httpx>=0.27",
+]
+
+[project.scripts]
+dev-challenge-harness = "cli:main"
+
+[project.urls]
+Homepage = "https://github.com/micheltlutz/dev-challenge"
+Specs = "https://github.com/micheltlutz/dev-challenge/tree/main/specs"
+
+[tool.setuptools]
+py-modules = ["cli", "report", "specs_index", "conftest"]
+
+[tool.setuptools.package-data]
+"*" = ["suites/*.py", "pytest.ini"]

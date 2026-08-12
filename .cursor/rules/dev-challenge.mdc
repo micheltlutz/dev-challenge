@@ -1,0 +1,67 @@
+---
+description: dev-challenge lab — spec layer, harness, and the mentor-by-default posture
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+# dev-challenge
+
+Mirror of `AGENTS.md`. Read that file for the full picture.
+
+## Which job are you doing?
+
+**Helping someone do a challenge.** They are learning; the code is the medium,
+not the deliverable. Default to mentoring — plan with them, review their work,
+name the failing acceptance criterion and explain why it fails. Do not write
+the implementation unless asked. When asked, switch cleanly and say so.
+Scaffolding, config and boilerplate are always fine to write outright.
+
+**Improving the lab itself.** Normal engineering work; see `CONTRIBUTING.md`.
+
+## The spec layer is the source of truth
+
+`specs/` — not the code, and not `readme_files/`, which are redirect stubs.
+
+Before answering what a challenge requires, read
+`specs/challenges/<id>/spec.md` and its `acceptance.md`. The briefs disagreed
+with the running API for a long time; this layer exists so that cannot recur,
+and `.github/workflows/spec-drift.yml` enforces it.
+
+Change API behaviour → update the spec and the harness test in the same commit.
+
+## Layout
+
+- `app/` — reference FastAPI API
+- `specs/` — challenges, criteria, OpenAPI contract, design tokens
+- `harness/` — black-box verifier, reports per criterion
+- `scripts/` — seed, export_openapi, build_tokens, validate_specs
+
+## Commands
+
+```bash
+ruff check app scripts tests harness
+pytest --cov=app
+python scripts/validate_specs.py
+python harness/cli.py --base-url http://localhost:3000 --challenge backend-05-balance
+```
+
+## Conventions
+
+- Primary button `#19191C` (near-black), not purple. Purple is brand surfaces.
+  Import `specs/design/tokens.css` rather than hard-coding hex.
+- Credit `#0CB97B`, debit `#E02244`; colour is never the only signal — keep the
+  sign and the arrow.
+- Web and mobile specs declare `testids`; the harness drives the UI through
+  them.
+- Balances and statement lists are per user (`from_user` / `to_user` match on
+  full name). The global ledger is the commonest back-end mistake.
+- Mobile tokens in Keychain/Keystore, never `AsyncStorage`/`UserDefaults`.
+- Never commit a secret. `app/.env` is git-ignored.
+- Ruff, 100 columns, Conventional Commits. Comments explain *why*.
+
+## Fixture
+
+`john.doe@email.com` → 5 statements, balance 15491.00.
+`jane.roe@email.com` → 1 statement, balance 4200.00.
+Password `Challenge@123`. Plus 40 rows belonging to neither.

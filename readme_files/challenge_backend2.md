@@ -1,66 +1,19 @@
-# Back-end Developer Technical Challenge 2
+# Moved — Create user route
 
-## Objective:
+This challenge now lives in the spec layer, where it has a machine-checked API
+contract and numbered acceptance criteria:
 
-Your primary mission is to design and implement a backend route named create_user for user registration. This route will handle the reception and processing of user data sent via a POST request. The solution should be crafted using your preferred back-end language/framework.
+**➡️ [`specs/challenges/backend-02-create-user/spec.md`](../specs/challenges/backend-02-create-user/spec.md)**
 
-## Specifications:
+- Acceptance criteria: [`acceptance.md`](../specs/challenges/backend-02-create-user/acceptance.md)
+- All challenges: [`specs/README.md`](../specs/README.md)
 
-### 1. Endpoint:
+## Why it moved
 
-- Develop an endpoint named /create_user.
+The old briefs disagreed with the running API in ways that broke the first
+request a challenger made. Specs are now generated against the live contract and
+verified in CI, so that cannot happen again. See
+[`specs/README.md`](../specs/README.md).
 
-### 2. Input:
-
-- The route should expect a POST request with a JSON body formatted as:
-
-```json
-{
-    "userid": "user@example.com",
-    "password": "string",
-    "fullname": "string",
-    "birthdate": "2023-09-22"
-}
-```
-
-### 3. Database Integration:
-
-- Implement database integration using SQLite.
-- Successfully processed user data should be stored persistently in the SQLite database.
-
-### 4. Field Validations & Security:
-
-- Ensure that the `userid` field is validated for a correct email format.
-- Ensure that the `birthdate` field strictly adheres to the date format as specified in the JSON model above.
-- Passwords must be stored securely. 
-  - Use password hashing techniques before storing the password in the database. 
-  - We suggest using `bcrypt` for password hashing.
-
-### 5. Output:
-
-- After successfully processing the input data and storing the user information, the endpoint should return a status code of 201 Created.
-- The response should contain a confirmation message, for example:
-
-```json
-{
-    "msg": "User created successfully"
-}
-```
-
-### 6. API Documentation
-
-- As a bonus, provide Swagger documentation for the `create_user` route, offering insights into its expected input, output, and behavior.
-
-### 7. Unit Testing:
-
-- Integrate unit tests to ensure the reliability of the route under various scenarios. Tests should cover, at a minimum:
-  - Successful user registration.
-  - Validation failures (incorrect email format, invalid date, etc.).
-  - Proper password hashing and retrieval.
-
-## Final Considerations:
-
-- Prioritize best practices concerning code structure, error handling, security, and scalability.
-- Make sure to handle potential database errors or conflicts, such as duplicate email addresses.
-
-Embarking on challenges like this allows you to demonstrate both your technical knowledge and your problem-solving abilities. We eagerly await your innovative solution and wish you the best of luck!
+*This stub exists so older links keep working. It will be removed in a future
+major version.*

@@ -1,0 +1,50 @@
+# mobile-04-statement — Maestro flow
+#
+#   maestro test harness/ui/mobile/statement.yaml -e APP_ID=com.example.mystatement
+#
+# Criteria covered here: MOB04-AC1, MOB04-AC2, MOB04-AC4, MOB04-AC6.
+# MOB04-AC5 (survives restart) and MOB04-AC8 (pull-to-refresh) are easier to
+# check by hand; MOB04-AC3 needs a colour assertion Maestro cannot make.
+
+appId: ${APP_ID}
+---
+- launchApp
+
+- tapOn:
+    id: 'login-email'
+- inputText: 'john.doe@email.com'
+- tapOn:
+    id: 'login-password'
+- inputText: 'Challenge@123'
+- tapOn:
+    id: 'login-submit'
+- assertVisible:
+    id: 'app-shell'
+
+- tapOn:
+    id: 'drawer-toggle'
+- tapOn:
+    id: 'nav-statement'
+
+# ac('MOB04-AC1') — balance is shown
+- assertVisible:
+    id: 'balance-amount'
+
+# ac('MOB04-AC2') — statements are listed
+- assertVisible:
+    id: 'statement-row'
+
+# ac('MOB04-AC4') — hide-values masks the figures
+- tapOn:
+    id: 'balance-toggle'
+- assertNotVisible: '[0-9]+[.,][0-9]{2}'
+
+- tapOn:
+    id: 'balance-toggle'
+
+# ac('MOB04-AC6') — the next page loads
+- scrollUntilVisible:
+    element:
+      id: 'statement-loading'
+    direction: DOWN
+    timeout: 10000

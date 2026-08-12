@@ -1,47 +1,19 @@
-# Back-end Developer Technical Challenge 1
+# Moved — Contact route
 
-## Objective:
-Your task is to design and implement a route named create_contact in your preferred back-end language/framework. This route will handle the reception and processing of contact information sent via a POST request.
+This challenge now lives in the spec layer, where it has a machine-checked API
+contract and numbered acceptance criteria:
 
-## Specifications:
+**➡️ [`specs/challenges/backend-01-contact/spec.md`](../specs/challenges/backend-01-contact/spec.md)**
 
-### 1. Endpoint:
+- Acceptance criteria: [`acceptance.md`](../specs/challenges/backend-01-contact/acceptance.md)
+- All challenges: [`specs/README.md`](../specs/README.md)
 
-- Develop an endpoint named /create_contact.
+## Why it moved
 
-### 2. Input:
+The old briefs disagreed with the running API in ways that broke the first
+request a challenger made. Specs are now generated against the live contract and
+verified in CI, so that cannot happen again. See
+[`specs/README.md`](../specs/README.md).
 
-- The route should expect a POST request with a JSON body formatted as:
-
-```json
-{
-    "nome": "User's Name",
-    "email": "email@example.com",
-    "message": "Message sent by the user",
-    "interest": "Interest indicated by the user"
-}
-```
-
-### 3. Output:
-
-- After successfully processing the input data, the endpoint should return a status code of `200 OK`.
-- Additionally, it should provide a JSON response in the following format:
-
-```json
-{
-    "msg": "Thank [contact.name], for getting in touch and sharing your interests. We look forward to hearing from you soon."
-}
-```
-
-### Additional Points (Bonus):
-
-- As a distinguishing feature, integrate a Swagger documentation for the `create_contact` route, outlining its expected input, output, and behavior. This would not only demonstrate your proficiency with modern API documentation standards but would also offer a clear interface for front-end developers and other consumers of your API.
-
-
-## Final Considerations:
-
-- Ensure your solution adheres to best practices in terms of code structure, error handling, and security.
-- Thoroughly test the route to guarantee its reliability under different scenarios.
-- Be sure to write a good README guiding how to run your project, dependencies and what you think is necessary to install and run the project.
-
-We wish you the best with this challenge and eagerly await your solution!
+*This stub exists so older links keep working. It will be removed in a future
+major version.*

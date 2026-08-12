@@ -1,0 +1,43 @@
+# mobile-02-login — Maestro flow
+#
+# Best-effort automation for a track the harness cannot fully verify. Run with:
+#   maestro test harness/ui/mobile/login.yaml -e APP_ID=com.example.mystatement
+#
+# Criteria covered here: MOB02-AC1, MOB02-AC3, MOB02-AC6.
+# MOB02-AC4 (secure storage) and MOB02-AC5 (survives restart) cannot be checked
+# from outside the app -- review them yourself against the spec.
+
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+
+# ac('MOB02-AC1') — screen renders
+- assertVisible:
+    id: 'login-email'
+- assertVisible:
+    id: 'login-password'
+- assertVisible:
+    id: 'login-submit'
+
+# ac('MOB02-AC6') — bad credentials show an error
+- tapOn:
+    id: 'login-email'
+- inputText: 'john.doe@email.com'
+- tapOn:
+    id: 'login-password'
+- inputText: 'definitely-wrong'
+- tapOn:
+    id: 'login-submit'
+- assertVisible:
+    id: 'login-error'
+
+# ac('MOB02-AC3') — valid credentials authenticate
+- tapOn:
+    id: 'login-password'
+- eraseText
+- inputText: 'Challenge@123'
+- tapOn:
+    id: 'login-submit'
+- assertVisible:
+    id: 'app-shell'

@@ -1,0 +1,41 @@
+# Optional but recommended for contributors:
+#   pip install pre-commit && pre-commit install
+#
+# These are the fast checks. The full set lives in CI -- see CONTRIBUTING.md.
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: \.md$
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+        exclude: ^\.devcontainer/devcontainer\.json$
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=600"]
+      - id: detect-private-key
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.4
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: no-committed-env
+        name: no committed .env
+        entry: bash -c 'git diff --cached --name-only | grep -E "(^|/)\.env$" && { echo "Refusing to commit a .env file. Use app/.env.example."; exit 1; } || exit 0'
+        language: system
+        pass_filenames: false
+
+      - id: spec-layer
+        name: spec layer is consistent
+        entry: python scripts/validate_specs.py --quiet
+        language: system
+        pass_filenames: false
+        files: ^(specs/|app/|harness/|scripts/|readme_files/).*

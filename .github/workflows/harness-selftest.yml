@@ -1,0 +1,83 @@
+name: Harness self-test
+
+# The harness and the reference API must agree. If this fails, one of the two is
+# wrong -- and since the specs are written against the reference, that is worth
+# knowing before a challenger discovers it.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements_for_dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements_for_dev.txt
+
+      - name: Seed the database
+        run: python scripts/seed.py
+
+      - name: Start the reference API
+        env:
+          SECRET: harness-selftest-key
+        run: |
+          uvicorn app.main:app --port 8000 --log-level warning &
+          for _ in $(seq 1 30); do
+            curl -sf http://localhost:8000/health-check && break
+            sleep 1
+          done
+          curl -sf http://localhost:8000/health-check
+
+      - name: Run the harness against it
+        run: |
+          python harness/cli.py \
+            --base-url http://localhost:8000 \
+            --report-markdown harness-scorecard.md \
+            --report-json harness-scorecard.json
+
+      - name: Fail if any criterion did not pass
+        run: |
+          python - <<'PY'
+          import json, sys
+          report = json.load(open("harness-scorecard.json"))
+          summary = report["summary"]
+          print(json.dumps(summary, indent=2))
+          bad = summary["failed"] + summary["skipped"]
+          if bad:
+              print("\nThe reference API should satisfy every automated criterion.")
+              for c in report["criteria"]:
+                  if c["status"] in ("failed", "skipped"):
+                      print(f"  {c['status'].upper():7} {c['id']}  {c['title']}")
+                      if c["detail"]:
+                          print(f"          {c['detail']}")
+              sys.exit(1)
+          PY
+
+      - name: Publish the scorecard
+        if: always()
+        run: cat harness-scorecard.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the scorecard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: harness-scorecard
+          path: |
+            harness-scorecard.md
+            harness-scorecard.json

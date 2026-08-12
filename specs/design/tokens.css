@@ -1,0 +1,79 @@
+/* Generated from specs/design/tokens.json by scripts/build_tokens.py.
+ * Do not edit by hand -- edit the JSON and regenerate.
+ */
+:root {
+
+  /* color */
+  --color-brand-primary: #8E48EC;  /* Primary purple. Auth split-panel background, active nav, table headers. */
+  --color-brand-primary-deep: #4E01B4;  /* Deeper purple used for the active sidebar item and logo mark. */
+  --color-brand-primary-soft: #C79BEC;  /* Tint of the primary, for illustration fills and hover states. */
+  --color-brand-primary-wash: #F7F1FE;  /* Lightest purple wash, for selected rows and subtle highlights. */
+  --color-action-default: #19191C;  /* Near-black. Primary CTA buttons ('Log in', 'Create account', 'Save'). */
+  --color-action-hover: #2A2A2D;
+  --color-action-disabled: #A0A0A6;
+  --color-action-on-action: #FFFFFF;
+  --color-surface-canvas: #EFEFF0;  /* App background behind the dashboard shell. */
+  --color-surface-card: #FFFFFF;
+  --color-surface-sunken: #F5F5F6;
+  --color-surface-border: #EBEBEB;
+  --color-text-primary: #19191C;
+  --color-text-secondary: #37474F;
+  --color-text-muted: #666668;
+  --color-text-inverse: #FFFFFF;
+  --color-semantic-credit: #0CB97B;  /* Money in. Positive amounts, upward arrows, the Earnings KPI. */
+  --color-semantic-credit-soft: #49CB9C;
+  --color-semantic-debit: #E02244;  /* Money out. Negative amounts and downward arrows. */
+  --color-semantic-debit-soft: #E4482B;  /* Warmer red used on the Expenses KPI icon. */
+  --color-semantic-warning: #E4A82B;
+  --color-semantic-info: #37474F;
+
+  /* font */
+  --font-family-sans: Poppins, Inter, system-ui, -apple-system, "Segoe UI", sans-serif;  /* Geometric sans. The mockups use Poppins; the fallbacks keep the feel without a webfont. */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+  --font-size-3xl: 40px;
+  --font-line-height-tight: 1.2;
+  --font-line-height-normal: 1.5;
+  --font-line-height-relaxed: 1.7;
+
+  /* space */
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+
+  /* shadow */
+  --shadow-card: 0px 2px 8px 0px rgba(25, 25, 28, 0.06);
+  --shadow-raised: 0px 8px 24px 0px rgba(25, 25, 28, 0.10);
+
+  /* layout */
+  --layout-breakpoint-mobile: 375px;
+  --layout-breakpoint-tablet: 768px;
+  --layout-breakpoint-desktop: 1440px;
+  --layout-sidebar-width: 256px;  /* Web sidebar, and the mobile drawer width in menu-mobile.png. */
+  --layout-topbar-height: 72px;
+  --layout-content-max-width: 1184px;
+  --layout-field-height: 48px;
+  --layout-button-height: 48px;
+}

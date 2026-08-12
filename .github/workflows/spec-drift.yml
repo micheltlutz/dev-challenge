@@ -1,0 +1,61 @@
+name: Spec drift
+
+# The spec layer is the source of truth for the challenges. This workflow is
+# what makes that claim true: it fails if the committed contract, the generated
+# tokens, or the challenge specs no longer agree with the reference API.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  spec-drift:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements_for_dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements_for_dev.txt
+
+      - name: OpenAPI contract is up to date
+        run: python scripts/export_openapi.py --check
+
+      - name: Design tokens are up to date
+        run: python scripts/build_tokens.py --check
+
+      - name: Spec layer is internally consistent
+        run: python scripts/validate_specs.py
+
+      - name: Seed script is deterministic
+        run: |
+          python scripts/seed.py --out /tmp/seed-a.db
+          python scripts/seed.py --out /tmp/seed-b.db
+          sqlite3 /tmp/seed-a.db "select * from statement order by id;" > /tmp/a.txt
+          sqlite3 /tmp/seed-b.db "select * from statement order by id;" > /tmp/b.txt
+          diff /tmp/a.txt /tmp/b.txt || {
+            echo "scripts/seed.py is not deterministic; harness fixtures would be unstable."
+            exit 1
+          }
+
+      - name: Committed database matches the seed script
+        run: |
+          python scripts/seed.py --out /tmp/seed-c.db
+          sqlite3 /tmp/seed-c.db "select * from statement order by id;" > /tmp/c.txt
+          sqlite3 dev-challenge.db "select * from statement order by id;" > /tmp/committed.txt
+          diff /tmp/c.txt /tmp/committed.txt || {
+            echo "dev-challenge.db is stale. Run: python scripts/seed.py"
+            exit 1
+          }

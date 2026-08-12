@@ -1,0 +1,15 @@
+{
+  "name": "dev-challenge-harness-ui",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Playwright acceptance suite for the dev-challenge web track.",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report",
+    "install-browsers": "playwright install --with-deps chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
+}

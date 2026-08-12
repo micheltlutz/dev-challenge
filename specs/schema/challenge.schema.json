@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/micheltlutz/dev-challenge/specs/schema/challenge.schema.json",
+  "title": "Challenge specification frontmatter",
+  "description": "YAML frontmatter at the top of every specs/challenges/<id>/spec.md. Validated by scripts/validate_specs.py.",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "track",
+    "order",
+    "difficulty",
+    "estimated_hours",
+    "depends_on",
+    "endpoints",
+    "acceptance"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(backend|web|mobile|fullstack)-[0-9]{2}-[a-z0-9-]+$",
+      "description": "Directory name. Must match the folder it lives in."
+    },
+    "title": { "type": "string", "minLength": 3 },
+    "track": {
+      "enum": ["backend", "web", "mobile", "fullstack"]
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Position within the track."
+    },
+    "difficulty": {
+      "enum": ["starter", "intermediate", "advanced"]
+    },
+    "estimated_hours": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 40
+    },
+    "depends_on": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "description": "Challenge ids that should be completed first. Must form a DAG."
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(GET|POST|PUT|PATCH|DELETE) /"
+      },
+      "uniqueItems": true,
+      "description": "API operations this challenge exercises. Each must exist in specs/openapi.json."
+    },
+    "figma_node": {
+      "type": ["string", "null"],
+      "description": "node-id in the Figma file, e.g. '13-5855'. Null for challenges with no design."
+    },
+    "mockups": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Repo-relative paths to reference images. Each must exist on disk."
+    },
+    "testids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "uniqueItems": true,
+      "description": "data-testid values the UI must expose. This is the contract that makes a front-end verifiable without dictating a framework. Required (non-empty) for web and mobile tracks."
+    },
+    "acceptance": {
+      "type": "string",
+      "const": "acceptance.md"
+    },
+    "verify": {
+      "type": ["string", "null"],
+      "description": "Harness module that checks this challenge. Null when verification is manual."
+    },
+    "verifiable": {
+      "type": "boolean",
+      "default": true,
+      "description": "False when the harness cannot check this automatically (documented honestly rather than implied)."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "track": { "enum": ["web", "mobile"] } },
+        "required": ["track"]
+      },
+      "then": {
+        "required": ["testids"],
+        "properties": {
+          "testids": { "minItems": 1 }
+        }
+      }
+    }
+  ]
+}

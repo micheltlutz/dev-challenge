@@ -1,0 +1,26 @@
+{
+  "$comment": [
+    "Optional MCP servers for working on this lab.",
+    "",
+    "The Figma Dev Mode server lets an agent read real node specs instead of",
+    "inferring layout from a PNG. It is inert without a token, and everything",
+    "in the lab works fine without it -- specs/design/tokens.json was sampled",
+    "from the exported mockups precisely so that Figma access is optional.",
+    "",
+    "To enable it, set FIGMA_ACCESS_TOKEN in your environment. Create one at",
+    "https://www.figma.com/developers/api#access-tokens with file:read scope.",
+    "Never commit the token.",
+    "",
+    "The design file is Q44nlEVrODE7W6iBFRVPZL; per-screen node ids are listed",
+    "in specs/design/screens.md."
+  ],
+  "mcpServers": {
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "figma-developer-mcp", "--stdio"],
+      "env": {
+        "FIGMA_API_KEY": "${FIGMA_ACCESS_TOKEN}"
+      }
+    }
+  }
+}
