@@ -27,7 +27,7 @@ PyJWT>=2.13.0
 
 # Password hashing. passlib used to wrap this, but passlib 1.7.4 is unmaintained
 # and raises on bcrypt >= 4.1, which broke user registration outright.
-bcrypt>=4.1,<6
+bcrypt>=5.0.0,<6
 
 # Only used by GET /generate-random-statement/. The seed script deliberately
 # does not use it -- see scripts/seed.py.
