@@ -31,6 +31,6 @@ bcrypt>=4.1,<6
 
 # Only used by GET /generate-random-statement/. The seed script deliberately
 # does not use it -- see scripts/seed.py.
-Faker>=37
+Faker>=40.36.0
 
 python-dotenv>=1.0
