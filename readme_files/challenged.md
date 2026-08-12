@@ -19,21 +19,24 @@ Docs: <https://dev-challenge.micheltlutz.me/docs>
 Good for front-end and mobile work. Note it is a **shared** instance — register
 your own account rather than relying on the demo data staying pristine.
 
-### Option B — Docker
+### Option B — Docker, no clone needed
 
 ```bash
-docker build -t dev-challenge .
-docker run -d --name dev-challenge-demo -p 8000:8000 dev-challenge:latest
+docker run -d --name dev-challenge-demo -p 8000:8000 \
+  -e SECRET=$(openssl rand -hex 32) \
+  ghcr.io/micheltlutz/dev-challenge:latest
 ```
 
 Then <http://localhost:8000/docs>. Stop it with
 `docker stop dev-challenge-demo`.
 
-Or, with compose:
+The image ships with the seeded database, so the demo users below work
+immediately. Setting `SECRET` is optional — without it the app generates an
+ephemeral key, which just means your tokens stop working when the container
+restarts.
 
-```bash
-docker compose up
-```
+If you have cloned the repo, `docker compose up` does the same thing and
+rebuilds from your local source.
 
 **Requirements:** Docker Engine on Linux, [Rancher
 Desktop](https://docs.rancherdesktop.io/getting-started/installation) on macOS
@@ -121,8 +124,10 @@ docker run --rm ghcr.io/micheltlutz/dev-challenge-harness \
 ```
 
 You get a scorecard per criterion, with the criterion's text next to the
-result. See [`harness/README.md`](../harness/README.md) for the web UI runner
-and the other options.
+result. `--list` shows every challenge id; drop `--challenge` to run the lot.
+
+See [`harness/README.md`](../harness/README.md) for the web UI runner and the
+other options.
 
 Mobile challenges are self-reviewed — native UI cannot be checked the same way.
 Each mobile spec says so plainly.

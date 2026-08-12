@@ -46,8 +46,13 @@ docker run --rm \
 If you see *"Cannot reach ... Connection refused"* from inside the container,
 this is almost always why.
 
-Build it yourself from the repository root (not from `harness/` — the image
-needs `specs/` too):
+Published for `linux/amd64` and `linux/arm64` by
+[`.github/workflows/publish-images.yml`](../.github/workflows/publish-images.yml)
+on every release, alongside `ghcr.io/micheltlutz/dev-challenge` (the reference
+API). Tags: `latest`, `2`, `2.0`, `2.0.0`.
+
+To build it yourself, do so from the repository root — not from `harness/`,
+because the image needs `specs/` too:
 
 ```bash
 docker build -f harness/Dockerfile -t dev-challenge-harness .

@@ -32,27 +32,42 @@ What makes it a lab rather than a list of exercises:
 
 **➡️ [Challenger guide](readme_files/challenged.md)** · [All challenges](specs/README.md)
 
-The 60-second version — use the hosted API and start reading:
+You work in **your own repository** — no need to fork this one. Nothing below
+requires cloning.
+
+**1. Get an API to build against.** Use the hosted one at
+`https://dev-challenge.micheltlutz.me` ([docs](https://dev-challenge.micheltlutz.me/docs)),
+or run your own:
 
 ```bash
-curl -X POST https://dev-challenge.micheltlutz.me/auth/ \
-  -H 'Content-Type: application/json' \
-  -d '{"userid":"john.doe@email.com","password":"Challenge@123"}'
+docker run -d -p 8000:8000 ghcr.io/micheltlutz/dev-challenge:latest
 ```
 
-Then check your work:
+**2. Pick a challenge** from [`specs/`](specs/README.md) and build it.
+
+**3. Check your work** against its acceptance criteria:
 
 ```bash
 # Linux
 docker run --rm --network host ghcr.io/micheltlutz/dev-challenge-harness \
   --base-url http://localhost:3000 --challenge backend-05-balance
 
-# macOS / Windows
+# macOS / Windows (--network host does not bridge to the host there)
 docker run --rm ghcr.io/micheltlutz/dev-challenge-harness \
   --base-url http://host.docker.internal:3000 --challenge backend-05-balance
 ```
 
-You work in **your own repository**. No need to fork this one.
+```
+PASS  BE05-AC1  Unauthenticated request is rejected
+FAIL  BE05-AC3  Seeded balance is exact
+      └─ john.doe@email.com should have a balance of 15491.00, got 13512.59.
+SKIP  BE05-AC5  Deposit increases the balance
+      └─ Cannot create statements (POST /statement/ returned 404).
+
+2/7 criteria passed
+```
+
+`--list` shows every challenge id. Drop `--challenge` to run them all.
 
 ### I want to improve the project
 
