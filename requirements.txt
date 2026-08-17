@@ -10,13 +10,13 @@
 # attack surface for no benefit.
 
 fastapi>=0.141.1
-uvicorn[standard]>=0.35
+uvicorn[standard]>=0.52.3
 
 # Explicit floor: FastAPI does not cap starlette, and versions below 1.3.1 carry
 # open advisories (PYSEC-2026-161/248/249/2280/2281).
-starlette>=1.3.1
+starlette>=1.6.0
 
-pydantic[email]>=2.9
+pydantic[email]>=2.13.4
 sqlalchemy>=2.0.36,<3
 
 # >=2.13.0 clears CVE-2026-32597 (unknown `crit` headers), CVE-2026-48522/48524
